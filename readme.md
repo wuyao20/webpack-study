@@ -56,3 +56,42 @@ module: {
     }]
 }
 ```
+# 使用loader打包静态资源
+url-loader 将图片变为base64编码，适合小图片  
+提高加载速度省了一次http请求，但是会加大js包的大小  
+> document
+>> loader
+- file-loader
+```
+npm install --save-dev file-loader
+```
+    
+- url-loader  
+> If the file is greater than the limit (in bytes) the file-loader is used by default and all query parameters are passed to it  
+> 可以通过fallback: 指定响应loader
+```
+module: {
+        rules: [{
+            test: /\.(jpg|png|jif)$/,
+            use: {
+                loader: "file-loader",
+                options: {
+                    // placeholder 占位符
+                    name: "[name].[ext]",
+                    outputPath: 'images/'
+                }
+            }
+        },
+        {
+            test: /\.(jpg|png|jif)$/,
+            use: {
+                loader: "url-loader",
+                options: {
+                    // placeholder 占位符
+                    name: "[name].[ext]",
+                    outputPath: 'images/'
+                }
+            }
+        }]
+    }
+```
