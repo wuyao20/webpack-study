@@ -39,5 +39,6 @@ module.exports = {
 - npx webpack index.js
 - npm run bundle -> webpack
 
-作业
-   document get
+作业  
+document guides getting started
+    
