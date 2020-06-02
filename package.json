@@ -2,8 +2,9 @@
   "name": "webpack-study",
   "version": "1.0.0",
   "description": "",
-  "private": true,
+  "main": "index.js",
   "scripts": {
+    "bundle": "webpack"
   },
   "author": "",
   "license": "ISC",
