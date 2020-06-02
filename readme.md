@@ -39,6 +39,20 @@ module.exports = {
 - npx webpack index.js
 - npm run bundle -> webpack
 
-作业  
-document guides getting started
+> document
+>> guides
+>>> getting started
     
+# loader是什么
+对于特定文件，该如何处理。  
+file-loader 将文件移动到对应文件夹下，并返回打包后的文件名称
+```
+module: {
+    rules: [{
+        test: /\.jpg$/,
+        use: {
+            loader: "file-loader"
+        }
+    }]
+}
+```

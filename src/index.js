@@ -1,14 +1,9 @@
-/*
-import Header from "./header.js";
-import Content from "./content.js";
-import Sidebar from "./sidebar.js";
-*/
-const Header = require('./header');
-const Content = require('./content');
-const Sidebar = require('./sidebar');
-new Header();
-new Content();
-new Sidebar();
+import avatar from './avatar.jpg';
+
+const img = new Image();
+img.src = avatar;
+const root = document.getElementById('root');
+root.append(img);
 
 
 
