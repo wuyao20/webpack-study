@@ -96,3 +96,31 @@ module: {
     }
 ```
 # loader打包静态资源 样式篇-上
+执行顺序从下至上，从右至左。  
+```
+{
+    test: /\.scss$/,
+    use: [
+        'style-loader',
+        'css-loader',
+        'sass-loader',
+        'postcss-loader'
+    ]
+},
+```
+postcss-loader 新建postcss.config.js文件
+```
+module.exports = {
+    plugins: [
+        require('autoprefixer')({
+            "browsers": [
+                "defaults",
+                "last 2 versions"
+            ]
+        })
+    ]
+}
+```
+
+# loader打包静态资源 样式篇-下
+css-module
