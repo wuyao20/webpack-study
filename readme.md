@@ -191,3 +191,20 @@ configuration
 guides
 - output management
 
+# SourceMap的配置
+mode: development
+cheap-module-eval-source-map
+mode: production
+devtool: cheap-module-source-map
+```
+devtool: source-map
+```
+- inline  
+    1. 打包至输出文件中，不单独形成文件
+- cheap  
+    1. 只映射业务代码
+    2. 错误确定到行
+- eval  
+    1. sourceURL
+    2. eval()
+

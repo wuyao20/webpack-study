@@ -1,3 +1,1 @@
-import './index.scss';
-const root = document.getElementById('root');
-root.innerHTML = '<div class="iconfont icon-xbox">abc</div>';
+consol.log('hello world');
