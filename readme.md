@@ -170,3 +170,24 @@ style-loader css-loader sass-loader postcss-loader
 在打包结束后，自动生成一个html文件，并把生成的js文件自动引入到这个html文件中。
 - clean-webpack-plugin  
 By default, this plugin will remove all files inside webpack's output.path directory, as well as all unused webpack assets after every successful rebuild.
+
+# Entry & Output
+打包多个文件时:   
+```
+entry: {
+    main: './src/index.js',
+    sub: './src/index.js'
+}
+
+output: {
+    publicPath: 'http://cdn.com.cn' //增加导出的js地址前缀
+    filename: [name].js
+}
+```
+configuration 
+- entry and context
+- output  
+
+guides
+- output management
+
