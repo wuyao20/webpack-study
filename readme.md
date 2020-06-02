@@ -164,3 +164,9 @@ dom.classList.add(style.avatar);
 GUIDES--Asset Management  
 
 style-loader css-loader sass-loader postcss-loader  
+
+# plugins让打包更便捷
+- [HtmlWebpackPlugin](https://github.com/jantimon/html-webpack-plugin#configuration)  
+在打包结束后，自动生成一个html文件，并把生成的js文件自动引入到这个html文件中。
+- clean-webpack-plugin  
+By default, this plugin will remove all files inside webpack's output.path directory, as well as all unused webpack assets after every successful rebuild.
