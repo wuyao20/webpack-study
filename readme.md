@@ -123,4 +123,44 @@ module.exports = {
 ```
 
 # loader打包静态资源 样式篇-下
-css-module
+- css-module 模块化  
+    修改css class名称,防止重复
+```
+{
+    loader: "css-loader",
+    options: {
+        importLoaders: 2,
+       modules: true
+    }
+}
+import style from './style.css';
+dom.classList.add(style.avatar);
+```
+- 使用字体图标  
+1. 导入字体文件--eot svg ttf woff
+2. 新建字体css文件  
+3. file-loader 处理字体文件  
+```
+    @font-face {
+        font-family: "iconfont"
+        src: url('./font/iconfont.eot?t=1591083063037'); /* IE9 */
+        ...
+    };
+    .iconfont {
+      font-family: "iconfont" !important;
+      font-size: 16px;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .icon-xbox:before {
+      content: "\e9ee";
+    }
+
+    <div class="iconfont icon-xbox"></div>
+```
+    
+GUIDES--Asset Management  
+
+style-loader css-loader sass-loader postcss-loader  
