@@ -207,7 +207,8 @@ devtool: source-map
 - eval  
     1. sourceURL
     2. eval()
-
+- module
+    1. module 也声称sourceMap
 # WebpackDevServer提升开发效率
 1. webpack --watch
 2. webpack-dev-server
@@ -272,3 +273,17 @@ import "@babel/polyfill"
 }
 ```
 
+# React webpack打包
+```json
+{
+  "presets": [
+    ["@babel/preset-env", {
+      "targets": {
+        "chrome": "67"
+      },
+      "useBuiltIns": "usage"
+    }],
+    "@babel/preset-react"
+  ]
+}
+```
