@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config build/webpack.prod.js",
-    "dev": "webpack-dev-server --config build/webpack.dev.js"
+    "dev": "webpack-dev-server --config build/webpack.dev.js",
+    "dev-build": "webpack --config build/webpack.dev.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "@babel/preset-react": "^7.10.1",
     "autoprefixer": "^9.8.0",
     "babel-loader": "^8.1.0",
+    "babel-plugin-dynamic-import-webpack": "^1.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.5.3",
     "express": "^4.17.1",
@@ -38,6 +40,7 @@
     "@babel/runtime": "^7.10.2",
     "@babel/runtime-corejs2": "^7.10.2",
     "core-js": "^3.6.5",
+    "lodash": "^4.17.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }

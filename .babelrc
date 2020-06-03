@@ -8,6 +8,7 @@
       "corejs": 3
     }],
     "@babel/preset-react"
-  ]
+  ],
+  "plugins": ["babel-plugin-dynamic-import-webpack"]
 }
 

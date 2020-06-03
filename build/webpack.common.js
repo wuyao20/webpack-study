@@ -62,14 +62,20 @@ module.exports = {
     output: {
         // publicPath: "/",
         filename: "[name].js",
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, '../dist')
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
         new CleanWebpackPlugin({
-            verbose: true
+            verbose: true,
+            // root: path.resolve(__dirname, '../dist')
         })
-    ]
+    ],
+    optimization: {
+        splitChunks: {
+            chunks: "all"
+        }
+    }
 }

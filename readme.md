@@ -309,3 +309,34 @@ npm install webpack-merge -D
 const merge = require('webpack-merge')
 module.exports = merge(commonConfig, devConfig);
 ```
+
+# webapck & Code Splitting
+代码分割与webpack无关  
+
+静态引入
+```
+import _ from 'lodash';
+console.log(_.join(['a', 'b', 'c', 'd'], '***'));
+
+
+optimization: {
+    splitChunks: {
+        chunks: "all"
+    }
+}
+```
+
+异步引入，无需配置，自动进行代码分割
+```
+function getComponent() {
+    return import('lodash').then( _ => {
+        const element = document.createElement('div');
+        element.innerHTML = _.join(['dell', 'lee'], "--");
+        return element;
+    })
+};
+
+getComponent().then(element => {
+    document.body.appendChild(element);
+});
+```
