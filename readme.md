@@ -237,3 +237,5 @@ CONCEPTS HMR
        })
    }
 ```
+# Babel处理es6语法
+

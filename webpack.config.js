@@ -5,7 +5,7 @@ const webpack = require('webpack')
 
 module.exports = {
     mode: 'development',
-    devtool: 'source-map',
+    devtool: 'cheap-eval-source-map',
     entry: {
         main: './src/index.js'
     },
@@ -17,6 +17,16 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader",
+                options: {
+                    presets: [["@babel/preset-env", {
+                        useBuiltIns: 'usage'
+                    }]]
+                }
+            },
             {
                 test: /\.(jpg|png|jif)$/,
                 use: {

@@ -1,25 +1,16 @@
-/*
-import './style.css'
+import "@babel/polyfill"
 
-const btn = document.createElement('button');
-btn.innerHTML = 'click';
-document.body.append(btn);
-
-btn.onclick = function () {
-    const div = document.createElement('div');
-    div.innerHTML = 'item';
-    document.body.append(div)
-}
-*/
-import counter from "./counter";
-import number from "./number";
-
-counter();
-number();
-
-if(module.hot) {
-    module.hot.accept('./number', () => {
-        document.body.removeChild(document.getElementById('number'));
-        number();
+const arr = [
+    new Promise((resolve, reject) => {
+        resolve('hello');
+    }),
+    new Promise((resolve, reject) => {
+        resolve('world')
     })
-}
+];
+
+arr.map( item => {
+    console.log(item.then(e => {
+        console.log(e);
+    }));
+})
