@@ -193,7 +193,7 @@ guides
 
 # SourceMap的配置
 mode: development
-cheap-module-eval-source-map
+cheap-module-eval-source-map 原始源代码（仅限行）
 mode: production
 devtool: cheap-module-source-map
 ```
@@ -208,3 +208,10 @@ devtool: source-map
     1. sourceURL
     2. eval()
 
+# WebpackDevServer提升开发效率
+1. webpack --watch
+2. webpack-dev-server
+3. node server.js  
+
+GUIDES  DEVELOPMENT  
+CONFIGURATION DevServer
