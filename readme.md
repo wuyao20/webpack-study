@@ -238,4 +238,22 @@ CONCEPTS HMR
    }
 ```
 # Babel处理es6语法
+npm install  "@babel/core"  "babel-loader"  "@babel/preset-env" "@babel/polyfill"
+```
+{
+    test: /\.js$/,
+    exclude: /node_modules/,
+    loader: "babel-loader",
+    options: {
+        presets: [["@babel/preset-env", {
+            useBuiltIns: 'usage'  // 舍弃掉不需要的语法转换
+        }]]
+    }
+}
 
+import "@babel/polyfill"
+```
+- @babel/core   babel核心代码
+- babel-loader  babel与webpack通信的桥梁
+- @babel/preset-env     进行语法转换
+- @babel/polyfill   覆盖更多低版本的浏览器
