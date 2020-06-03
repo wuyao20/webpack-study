@@ -22,7 +22,7 @@
 ```
 # 使用webpack的配置文件
 
-webpack.config.js
+webpack.dev.js
 ```$xslt
 const path = require('path');
 
@@ -290,7 +290,7 @@ import "@babel/polyfill"
 # TreeShaking
 mode: production
 只支持ES Module --静态引入,commonjs动态引入
-webpack.config.js
+webpack.dev.js
 ```js
 optimization: {
     usedExports: true
@@ -301,4 +301,11 @@ package.json
 {
   "sideEffects": false
 }
+```
+
+# Development & Production
+```
+npm install webpack-merge -D
+const merge = require('webpack-merge')
+module.exports = merge(commonConfig, devConfig);
 ```

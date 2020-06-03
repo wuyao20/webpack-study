@@ -1,19 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const webpack = require('webpack')
 
 module.exports = {
-    mode: 'production',
-    devtool: 'cheap-module-eval-source-map',
     entry: {
         main: './src/index.js'
-    },
-    devServer: {
-        contentBase: './dist',
-        open: true,
-        hot: true,
-        hotOnly: true
     },
     module: {
         rules: [
@@ -42,7 +33,7 @@ module.exports = {
                         loader: "css-loader",
                         options: {
                             importLoaders: 2,
-                           // modules: true
+                            // modules: true
                         }
                     },
                     'sass-loader',
@@ -79,10 +70,6 @@ module.exports = {
         }),
         new CleanWebpackPlugin({
             verbose: true
-        }),
-        new webpack.HotModuleReplacementPlugin()
-    ],
-    optimization: {
-        usedExports: true
-    }
+        })
+    ]
 }
