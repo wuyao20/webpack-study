@@ -4,8 +4,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack')
 
 module.exports = {
-    mode: 'development',
-    devtool: 'cheap-eval-source-map',
+    mode: 'production',
+    devtool: 'cheap-module-eval-source-map',
     entry: {
         main: './src/index.js'
     },
@@ -28,7 +28,7 @@ module.exports = {
                     loader: "url-loader",
                     options: {
                         // placeholder 占位符
-                        name: "[name].[ext]",
+                        name: "[name]_[hash].[ext]",
                         outputPath: 'images/',
                         limit: 2048 //2048byte 2kb
                     }
@@ -81,5 +81,8 @@ module.exports = {
             verbose: true
         }),
         new webpack.HotModuleReplacementPlugin()
-    ]
+    ],
+    optimization: {
+        usedExports: true
+    }
 }

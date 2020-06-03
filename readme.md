@@ -208,7 +208,7 @@ devtool: source-map
     1. sourceURL
     2. eval()
 - module
-    1. module 也声称sourceMap
+    1. module loader也生成sourceMap
 # WebpackDevServer提升开发效率
 1. webpack --watch
 2. webpack-dev-server
@@ -285,5 +285,20 @@ import "@babel/polyfill"
     }],
     "@babel/preset-react"
   ]
+}
+```
+# TreeShaking
+mode: production
+只支持ES Module --静态引入,commonjs动态引入
+webpack.config.js
+```js
+optimization: {
+    usedExports: true
+}
+```
+package.json  
+```json
+{
+  "sideEffects": false
 }
 ```
