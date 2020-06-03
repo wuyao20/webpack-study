@@ -253,7 +253,22 @@ npm install  "@babel/core"  "babel-loader"  "@babel/preset-env" "@babel/polyfill
 
 import "@babel/polyfill"
 ```
+业务代码打包
 - @babel/core   babel核心代码
 - babel-loader  babel与webpack通信的桥梁
 - @babel/preset-env     进行语法转换
-- @babel/polyfill   覆盖更多低版本的浏览器
+- @babel/polyfill   全局变量、方法替换，覆盖更多低版本的浏览器.useBuiltIns: 'usage'
+
+
+第三方库打包方案
+```
+{
+  "plugins": [["@babel/plugin-transform-runtime", {
+    "corejs": 2, 
+    "helpers": true,
+    "regenerator": true,
+    "useESModules": false
+  }]]
+}
+```
+
