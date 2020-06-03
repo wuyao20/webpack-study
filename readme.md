@@ -215,3 +215,25 @@ devtool: source-map
 
 GUIDES  DEVELOPMENT  
 CONFIGURATION DevServer
+
+# Hot Module Replacement
+GUIDES HMR  
+API HMR  
+CONCEPTS HMR  
+```
+   devServer: {
+           contentBase: './dist',
+           open: true,
+           hot: true,
+           hotOnly: true
+   },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ]
+   if(module.hot) {
+       module.hot.accept('./number', () => {
+           document.body.removeChild(document.getElementById('number'));
+           number();
+       })
+   }
+```
