@@ -75,22 +75,24 @@ module.exports = {
     ],
     optimization: {
         splitChunks: {
-            chunks: "async",
+            chunks: "all",
             minSize: 30000,
-            minChunks: 1,
-            maxAsyncRequests: 5,
-            maxInitialRequests: 3,
-            automaticNameDelimiter: '~',
+            // maxSize: 50000,对于大于50kb的库文件进行尝试再次分割
+            minChunks: 1,  // 当模块被应用多少次，才被代码分割
+            maxAsyncRequests: 5, //最大分割为5个js文件，超过不再分割
+            maxInitialRequests: 3, // 入口文件最大3
+            automaticNameDelimiter: '~', // 文件名链接符
             name: true,
             cacheGroups: {
                 vendors: {
                     test: /[\\/]node_modules[\\/]/,
-                    priority: -10
+                    priority: -10,
+                    filename: "vendors.js"
                 },
                 default: {
-                    minChunks: 2,
                     priority: -20,
-                    reuseExistingChunk: true
+                    reuseExistingChunk: true,
+                    filename: "common.js"
                 }
             }
         }

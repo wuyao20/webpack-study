@@ -342,3 +342,28 @@ getComponent().then(element => {
 ```
 
 # SplitChunksPlugin配置
+```
+optimization: {
+        splitChunks: {
+            chunks: "async", //打包异步模块   all  initial
+            minSize: 30000,  // 分割代码的最小体积， 30kb
+            minChunks: 1, // 当模块被应用多少次，才被代码分割
+            maxAsyncRequests: 5, //最大分割为5个js文件，超过不再分割
+            maxInitialRequests: 3, // 入口文件最大3
+            automaticNameDelimiter: '~', // 文件名链接符
+            name: true,
+            cacheGroups: {
+                vendors: {  // 分包形成的文件名  组名vendors 加文件名  main.js = vendos~main.js
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10
+                    // filename: vendos.js 输出统一文件名
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true
+                }
+            }
+        }
+    }
+```
