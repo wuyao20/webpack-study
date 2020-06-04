@@ -441,3 +441,13 @@ output: {
     path: path.resolve(__dirname, '../dist')
 }
 ```
+
+# shimming
+自动导入对应的库
+```
+new webpack.ProvidePlugin({
+            $: 'jquery',
+            _: 'lodash'
+            // _join: ['lodash', 'join']
+        })
+```

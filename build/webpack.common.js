@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     entry: {
@@ -42,6 +43,11 @@ module.exports = {
         new CleanWebpackPlugin({
             verbose: true,
             // root: path.resolve(__dirname, '../dist')
+        }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            _: 'lodash'
+            // _join: ['lodash', 'join']
         })
     ],
     optimization: {
