@@ -422,3 +422,22 @@ optimization: {
     minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
   },
 ```
+
+# webpack & caching
+老版本的manifest 
+将manifest的内容抽取出来，导入到runtime文件中。 
+```
+optimization: {
+    runtimeChunk: {
+        name: 'runtime'
+    }
+},
+```
+```
+output: {
+    // publicPath: "/",
+    filename: "[name].[contenthash].js",  //entry文件
+    chunkFilename: "[name].[contenthash].js",
+    path: path.resolve(__dirname, '../dist')
+}
+```

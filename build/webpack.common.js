@@ -1,4 +1,3 @@
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
@@ -36,12 +35,6 @@ module.exports = {
             },
         ]
     },
-    output: {
-        // publicPath: "/",
-        filename: "[name].js",  //entry文件
-        chunkFilename: "[name].chunk.js",
-        path: path.resolve(__dirname, '../dist')
-    },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html'
@@ -64,7 +57,8 @@ module.exports = {
             cacheGroups: {
                 vendors: {
                     test: /[\\/]node_modules[\\/]/,
-                    priority: -10
+                    priority: -10,
+                    name: 'vendors'
                 },
                 default: {
                     priority: -20,
@@ -73,5 +67,6 @@ module.exports = {
             }
         },
         usedExports: true
-    }
+    },
+    performance: false
 }
