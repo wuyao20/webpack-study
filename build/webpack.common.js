@@ -81,7 +81,7 @@ module.exports = {
             minChunks: 1,  // 当模块被应用多少次，才被代码分割
             maxAsyncRequests: 5, //最大分割为5个js文件，超过不再分割
             maxInitialRequests: 3, // 入口文件最大3
-            // automaticNameDelimiter: '~', // 文件名链接符
+            automaticNameDelimiter: '~', // 文件名链接符
             name: true,
             cacheGroups: {
                 vendors: {

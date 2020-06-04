@@ -370,3 +370,28 @@ optimization: {
 
 # Lazy Loading 懒加载 Chunk
 打包生成的一个js文件就是一个chunk
+
+# 打包分析, Preloading, Prefetching
+官方分析工具  
+webpack --profile --json > stats.json  
+webpack-bundle-analyzer分析工具  
+```
+npm install --save-dev webpack-bundle-analyzer
+
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+module.exports = {
+  plugins: [
+    new BundleAnalyzerPlugin()
+  ]
+}
+```
+
+import(/* webpackPrefetch: true */'./click').then()  
+这段代码告诉浏览器，这段资源将会在未来某个导航或者功能要用到，但是本资源的下载顺序权重比较低。也就是说prefetch通常用于加速下一次导航，而不是本次的。
+
+被标记为prefetch的资源，将会被浏览器在空闲时间加载.    
+
+import(/* webpackPreload: true */'./click').then()
+
+preload通常用于本页面要用到的关键资源，包括关键js、字体、css文件。preload将会把资源得下载顺序权重提高，使得关键数据提前下载好，优化页面打开速度。
