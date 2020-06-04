@@ -464,3 +464,20 @@ new webpack.ProvidePlugin({
                 }]
             },
 ```
+
+# 环境变量的使用
+```
+module.exports = (env) => {
+    if(env && env.production) {
+        return merge(commonConfig, prodConfig);
+    } else {
+        return merge(commonConfig, devConfig);
+    }
+}
+
+"scripts": {
+    "build": "webpack --env.production=abc --config build/webpack.common.js",
+    "dev": "webpack-dev-server --config build/webpack.common.js",
+    "dev-build": "webpack --config build/webpack.common.js"
+}
+```

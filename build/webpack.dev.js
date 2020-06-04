@@ -1,6 +1,6 @@
 const webpack = require('webpack');
-const merge = require('webpack-merge');
-const commonConfig = require('./webpack.common');
+// const merge = require('webpack-merge');
+// const commonConfig = require('./webpack.common');
 const path = require('path');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -50,4 +50,5 @@ const devConfig = {
     }
 }
 
-module.exports = merge(commonConfig, devConfig);
+// module.exports = merge(commonConfig, devConfig);
+module.exports = devConfig;
