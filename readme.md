@@ -367,3 +367,6 @@ optimization: {
         }
     }
 ```
+
+# Lazy Loading 懒加载 Chunk
+打包生成的一个js文件就是一个chunk

@@ -1,20 +1,19 @@
-import _ from 'lodash';
-import jquery from 'jquery';
-console.log(_.join(['a', 'b', 'c', 'd'], '***'));
+// import _ from 'lodash';
+//
+// const element = document.createElement('div');
+// element.innerHTML = _.join(['dell', 'lee'], "--");
+// document.body.appendChild(element);
 
 
-/*function getComponent() {
-    return import(/!* webpackChunkName: "lodash"*!/'lodash').then( _ => {
-        const element = document.createElement('div');
-        element.innerHTML = _.join(['dell', 'lee'], "--");
-        return element;
-    })
+async function getComponent() {
+    const _ = await import(/* webpackChunkName: "lodash"*/'lodash');
+    const element = document.createElement('div');
+    element.innerHTML = _.join(['dell', 'lee'], "--");
+    return element;
 };
 
-getComponent().then(element => {
-    document.body.appendChild(element);
-});*/
-
-// import { test } from './test';
-//
-// console.log(test.name)
+document.addEventListener('click', ()=> {
+    getComponent().then(element => {
+        document.body.appendChild(element);
+    });
+})
