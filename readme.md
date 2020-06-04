@@ -451,3 +451,16 @@ new webpack.ProvidePlugin({
             // _join: ['lodash', 'join']
         })
 ```
+
+执行顺序从下至上  
+```
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: [{
+                    loader: "babel-loader"
+                }, {
+                    loader: "imports-loader?this=>window"
+                }]
+            },
+```
