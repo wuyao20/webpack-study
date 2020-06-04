@@ -26,29 +26,6 @@ module.exports = {
                 }
             },
             {
-                test: /\.scss$/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: "css-loader",
-                        options: {
-                            importLoaders: 2,
-                            // modules: true
-                        }
-                    },
-                    'sass-loader',
-                    'postcss-loader'
-                ]
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'postcss-loader'
-                ]
-            },
-            {
                 test: /\.(eot|ttf|svg|woff)$/,
                 use: {
                     loader: "file-loader",
@@ -61,7 +38,8 @@ module.exports = {
     },
     output: {
         // publicPath: "/",
-        filename: "[name].js",
+        filename: "[name].js",  //entry文件
+        chunkFilename: "[name].chunk.js",
         path: path.resolve(__dirname, '../dist')
     },
     plugins: [
@@ -93,6 +71,7 @@ module.exports = {
                     reuseExistingChunk: true
                 }
             }
-        }
+        },
+        usedExports: true
     }
 }

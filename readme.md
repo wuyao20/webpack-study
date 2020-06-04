@@ -395,3 +395,30 @@ import(/* webpackPrefetch: true */'./click').then()
 import(/* webpackPreload: true */'./click').then()
 
 preload通常用于本页面要用到的关键资源，包括关键js、字体、css文件。preload将会把资源得下载顺序权重提高，使得关键数据提前下载好，优化页面打开速度。
+
+#css文件的代码分割
+```
+npm install --save-dev mini-css-extract-plugin
+
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
+  plugins: [new MiniCssExtractPlugin()],
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+    ],
+  },
+};
+```
+css压缩
+```
+npm install optimize-css-assets-webpack-plugin
+
+optimization: {
+    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+  },
+```

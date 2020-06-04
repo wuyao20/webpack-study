@@ -18,10 +18,15 @@
 //     });
 // })
 
-document.addEventListener('click', () => {
-    import(/* webpackPrefetch: true */'./click').then( ({ default: click }) => {
-        click();
-    })
-});
+// document.addEventListener('click', () => {
+//     import(/* webpackPrefetch: true */'./click').then( ({ default: click }) => {
+//         click();
+//     })
+// });
+
+
+import './style.css';
+
+console.log("hello");
 
 
