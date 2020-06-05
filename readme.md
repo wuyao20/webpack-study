@@ -289,3 +289,16 @@ import "@babel/polyfill"
 ```
 
 # webpackDevServer 实现请求转发
+```
+proxy: {
+        '/react/api': {
+            target: 'http://www.dell-lee.com',
+            pathRewrite: {
+                'header.json': 'demo.json'
+            },
+            changeOrigin: true
+        }
+    }
+```
+
+# webpackDevServer 解决单页面应用路由问题

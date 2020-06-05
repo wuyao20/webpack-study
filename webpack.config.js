@@ -13,13 +13,17 @@ module.exports = {
         contentBase: './dist',
         open: true,
         hot: true,
+        historyApiFallback: true, //
         proxy: {
             '/react/api': {
                 target: 'http://www.dell-lee.com',
                 pathRewrite: {
                     'header.json': 'demo.json'
                 },
-                changeOrigin: true
+                changeOrigin: true,
+                headers: {
+                    host: 'www.dell-lee.com'
+                }
             }
         }
     },
