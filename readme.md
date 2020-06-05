@@ -464,3 +464,35 @@ new webpack.ProvidePlugin({
                 }]
             },
 ```
+
+# Library打包
+
+# Progressive Web Application
+```
+npm install http-server -D
+"scripts": {
+    "start": "http-server dist"
+}
+
+const WorkboxPlugin  = require('workbox-webpack-plugin');
+plugins: [
+        new WorkboxPlugin.GenerateSW({
+            clientsClaim: true,
+            skipWaiting: true
+        })
+    ]
+
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+                console.log('service-worker register')
+            }).catch(error => {
+            console.log('service-worker not register error')
+            })
+    })
+}
+```
+
+# TypeScript的打包配置
