@@ -323,3 +323,8 @@ devServer: {
 }
 ```
 // git 狗子 eslint src
+
+# 提高webpack打包速度的方法
+1. 跟上技术的迭代（Node,Npm,Yarn)
+2. 在尽可能少的模块上应用loader
+3. Plugin尽可能精简且可靠
