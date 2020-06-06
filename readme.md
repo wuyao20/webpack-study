@@ -302,3 +302,24 @@ proxy: {
 ```
 
 # webpackDevServer 解决单页面应用路由问题
+
+#Eslint 在webpack中的配置
+```
+npm install eslint eslint-loader
+
+
+module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['babel-loader', 'eslint-loader'],
+      }
+    ]
+}
+
+devServer: {
+    overlay: true
+}
+```
+// git 狗子 eslint src
