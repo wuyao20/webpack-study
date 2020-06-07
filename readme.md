@@ -328,3 +328,13 @@ devServer: {
 1. 跟上技术的迭代（Node,Npm,Yarn)
 2. 在尽可能少的模块上应用loader
 3. Plugin尽可能精简且可靠
+4. resolve参数合理配置
+```
+resolve: {
+    extensions: ['.js', '.jsx'] //按顺序遍历文件
+    mainFiles: ['index', 'child'], // 默认加载的文件名
+    alias: {
+        delllee: path.resolve(__dirname, ../src/child) //文件路径别名
+    }
+}
+```
