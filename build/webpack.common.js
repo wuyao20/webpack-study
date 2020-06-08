@@ -3,6 +3,31 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const fs = require('fs');
+
+const plugins = [
+  new HtmlWebpackPlugin({
+    template: './src/index.html'
+  }),
+  new CleanWebpackPlugin({
+    verbose: true,
+    // root: path.resolve(__dirname, '../dist')
+  })
+];
+
+const files = fs.readdirSync(path.resolve(__dirname, '../dll'));
+files.forEach(file => {
+  if(/.*\.dll.js/.test(file)){
+    plugins.push(new AddAssetHtmlWebpackPlugin({
+      filepath: path.resolve(__dirname, '../dll', file)
+    }))
+  }
+  if(/.*\.manifest.json/.test(file)){
+    plugins.push(new webpack.DllReferencePlugin({
+      manifest: path.resolve(__dirname, '../dll', file)
+    }))
+  }
+})
 
 module.exports = {
   entry: {
@@ -43,21 +68,22 @@ module.exports = {
       },
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html'
-    }),
-    new CleanWebpackPlugin({
-      verbose: true,
-      // root: path.resolve(__dirname, '../dist')
-    }),
-    new AddAssetHtmlWebpackPlugin({
-      filepath: path.resolve(__dirname, '../dll/vendors.dll.js')
-    }),
-    new webpack.DllReferencePlugin({
-      manifest: path.resolve(__dirname, '../dll/vendors.manifest.json')
-    })
-  ],
+  // plugins: [
+  //   new HtmlWebpackPlugin({
+  //     template: './src/index.html'
+  //   }),
+  //   new CleanWebpackPlugin({
+  //     verbose: true,
+  //     // root: path.resolve(__dirname, '../dist')
+  //   }),
+  //   new AddAssetHtmlWebpackPlugin({
+  //     filepath: path.resolve(__dirname, '../dll/vendors.dll.js')
+  //   }),
+  //   new webpack.DllReferencePlugin({
+  //     manifest: path.resolve(__dirname, '../dll/vendors.manifest.json')
+  //   })
+  // ],
+  plugins: plugins,
   optimization: {
     splitChunks: {
       chunks: "all",
