@@ -5,33 +5,60 @@ const path = require('path');
 const webpack = require('webpack');
 const fs = require('fs');
 
-const plugins = [
-  new HtmlWebpackPlugin({
-    template: './src/index.html'
-  }),
-  new CleanWebpackPlugin({
+const makePlugins = configs => {
+
+  const plugins = [new CleanWebpackPlugin({
     verbose: true,
     // root: path.resolve(__dirname, '../dist')
+  })];
+
+  Object.keys(configs.entry).forEach(item => {
+    plugins.push(
+      new HtmlWebpackPlugin({
+        template: './src/index.html',
+        filename: `${item}.html`,
+        chunks: [
+          'runtime', 'vendors', item
+        ]
+      }))
   })
-];
 
-const files = fs.readdirSync(path.resolve(__dirname, '../dll'));
-files.forEach(file => {
-  if(/.*\.dll.js/.test(file)){
-    plugins.push(new AddAssetHtmlWebpackPlugin({
-      filepath: path.resolve(__dirname, '../dll', file)
-    }))
-  }
-  if(/.*\.manifest.json/.test(file)){
-    plugins.push(new webpack.DllReferencePlugin({
-      manifest: path.resolve(__dirname, '../dll', file)
-    }))
-  }
-})
+  // new HtmlWebpackPlugin({
+  //   template: './src/index.html',
+  //   filename: 'index.html',
+  //   chunks: [
+  //     'runtime', 'vendors', 'main',
+  //   ]
+  // }),
+  //   new HtmlWebpackPlugin({
+  //     template: './src/index.html',
+  //     filename: 'list.html',
+  //     chunks: [
+  //       'runtime', 'vendors', 'list',
+  //     ]
+  //   })
 
-module.exports = {
+  const files = fs.readdirSync(path.resolve(__dirname, '../dll'));
+  files.forEach(file => {
+    if(/.*\.dll.js/.test(file)){
+      plugins.push(new AddAssetHtmlWebpackPlugin({
+        filepath: path.resolve(__dirname, '../dll', file)
+      }))
+    }
+    if(/.*\.manifest.json/.test(file)){
+      plugins.push(new webpack.DllReferencePlugin({
+        manifest: path.resolve(__dirname, '../dll', file)
+      }))
+    }
+  });
+
+  return plugins;
+}
+
+const configs = {
   entry: {
-    main: './src/index.js'
+    main: './src/index.js',
+    list: './src/list.js'
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -83,7 +110,6 @@ module.exports = {
   //     manifest: path.resolve(__dirname, '../dll/vendors.manifest.json')
   //   })
   // ],
-  plugins: plugins,
   optimization: {
     splitChunks: {
       chunks: "all",
@@ -110,3 +136,9 @@ module.exports = {
   },
   performance: false
 }
+
+
+configs.plugins = makePlugins(configs);
+
+
+module.exports = configs
