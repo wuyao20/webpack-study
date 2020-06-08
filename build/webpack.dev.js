@@ -9,7 +9,6 @@ const devConfig = {
     devtool: 'cheap-module-eval-source-map',
     devServer: {
         contentBase: './dist',
-        open: true,
         hot: true
     },
     module: {

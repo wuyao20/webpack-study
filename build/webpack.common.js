@@ -6,15 +6,16 @@ module.exports = {
     entry: {
         main: './src/index.js'
     },
+    resolve: {
+        extensions: ['.js', '.jsx']
+    },
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 use: [{
                     loader: "babel-loader"
-                }, {
-                    loader: "imports-loader?this=>window"
                 }]
             },
             {
@@ -47,11 +48,6 @@ module.exports = {
         new CleanWebpackPlugin({
             verbose: true,
             // root: path.resolve(__dirname, '../dist')
-        }),
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            _: 'lodash'
-            // _join: ['lodash', 'join']
         })
     ],
     optimization: {
