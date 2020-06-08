@@ -480,3 +480,54 @@ resolve: {
     }
 }
 ```
+
+# webpack optimization -- DIIPlugin
+- 将第三方库不会变，集中打包存起来
+```
+const path = require('path');
+const webpack = require('webpack');
+
+module.exports = {
+  mode: "production",
+  entry: {
+    vendors: ['react' , 'react-dom', 'lodash'],
+  },
+  output: {
+    filename: "[name].dll.js",
+    path: path.resolve(__dirname, '../dll'),
+    library: '[name]'
+    // library: 'library', // <script src='library.js'></script> | 'root'
+    // libraryTarget: 'umd', // universal  ES6 common.js AMD
+    // libraryTarget: 'this'  | 'window' | 'global'//node.js
+  },
+  plugins: [
+    new webpack.DllPlugin({
+      name: '[name]',
+      path: path.resolve(__dirname, '../dll/[name].manifest.json'),
+    })
+  ]
+}
+```
+- 将生成集中打包文件，导入html模板
+```
+new AddAssetHtmlWebpackPlugin({
+      filepath: path.resolve(__dirname, '../dll/vendors.dll.js')
+    }),
+```
+- 生成映射文件
+```
+plugins: [
+    new webpack.DllPlugin({
+      name: '[name]',
+      path: path.resolve(__dirname, '../dll/[name].manifest.json'),
+    })
+  ]
+```
+
+- 文件应用
+```
+new webpack.DllReferencePlugin({
+      manifest: path.resolve(__dirname, '../dll/vendors.manifest.json')
+    })
+```
+
